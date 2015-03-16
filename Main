@@ -1,0 +1,97 @@
+package me.ray.rhardcore;
+
+import commands.*;
+import listeners.FirstTimeListener;
+import listeners.JoinListener;
+import listeners.RespawnListener;
+import managers.PermissionsManager;
+import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
+import org.bukkit.permissions.Permission;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
+
+
+
+public class Main extends JavaPlugin implements Listener {
+
+    public static Main main;
+    PluginManager pm = Bukkit.getPluginManager();
+    public static Plugin plugin;
+    public static Permission permission = null;
+
+    public void onEnable() {
+        System.out.print("rHardcore has been enabled!");
+        Bukkit.getServer().getPluginManager().registerEvents(this, this);
+        load();
+    }
+
+    public void onDisable() {
+        System.out.print("rHardcore has been disabled!");
+        unload();
+    }
+
+    public void connectCommands() {
+        getCommand("help").setExecutor(new CommandHelp());
+        getCommand("gamemode").setExecutor(new CommandGameMode());
+        getCommand("ban").setExecutor(new Ban());
+        getCommand("kick").setExecutor(new Kick());
+        getCommand("warn").setExecutor(new Warn());
+        getCommand("who").setExecutor(new Who());
+        getCommand("fly").setExecutor(new Fly());
+        getCommand("cc").setExecutor(new CC());
+        getCommand("ci").setExecutor(new CI());
+        getCommand("cip").setExecutor(new CIP());
+        getCommand("balance").setExecutor(new Balance());
+        getCommand("warp").setExecutor(new Warp());
+        getCommand("ip").setExecutor(new IP());
+        getCommand("tp").setExecutor(new TP());
+        getCommand("kit").setExecutor(new Kit());
+        getCommand("broadcast").setExecutor(new Broadcast());
+        getCommand("tphere").setExecutor(new TPHere());
+        getCommand("freeze").setExecutor(new Freeze());
+        getCommand("speed").setExecutor(new Speed());
+        getCommand("sethome").setExecutor(new SetHome());
+
+        pm.registerEvents(new JoinListener(), this);
+        pm.registerEvents(new FirstTimeListener(), this);
+        pm.registerEvents(new RespawnListener(), this);
+    }
+
+    public void setUpPermissions() {
+        Bukkit.getPluginManager().addPermission(PermissionsManager.getInstance().adminPerm);
+        Bukkit.getPluginManager().addPermission(PermissionsManager.getInstance().modPerm);
+        Bukkit.getPluginManager().addPermission(PermissionsManager.getInstance().proPerm);
+        Bukkit.getPluginManager().addPermission(PermissionsManager.getInstance().vipPerm);
+        Bukkit.getPluginManager().addPermission(PermissionsManager.getInstance().mvpPerm);
+        Bukkit.getPluginManager().addPermission(PermissionsManager.getInstance().youtubePerm);
+        Bukkit.getPluginManager().addPermission(PermissionsManager.getInstance().devPerm);
+        Bukkit.getPluginManager().addPermission(PermissionsManager.getInstance().modplusPerm);
+    }
+
+    public void removePermissions() {
+        Bukkit.getPluginManager().removePermission(PermissionsManager.getInstance().adminPerm);
+        Bukkit.getPluginManager().removePermission(PermissionsManager.getInstance().modPerm);
+        Bukkit.getPluginManager().removePermission(PermissionsManager.getInstance().proPerm);
+        Bukkit.getPluginManager().removePermission(PermissionsManager.getInstance().vipPerm);
+        Bukkit.getPluginManager().removePermission(PermissionsManager.getInstance().mvpPerm);
+        Bukkit.getPluginManager().removePermission(PermissionsManager.getInstance().youtubePerm);
+        Bukkit.getPluginManager().removePermission(PermissionsManager.getInstance().devPerm);
+        Bukkit.getPluginManager().removePermission(PermissionsManager.getInstance().modplusPerm);
+    }
+
+    public void load() {
+        setUpPermissions();
+        connectCommands();
+        Main.plugin.getConfig().options().copyDefaults(true);
+        Main.plugin.saveConfig();
+    }
+
+    public void unload() {
+        removePermissions();
+    }
+    public static Main getInstance() {
+        return main;
+    }
+}
