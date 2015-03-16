@@ -1,0 +1,47 @@
+name: rHardcore
+main: me.ray.rhardcore.Main
+version: 1.0
+commands:
+   balance:
+    description: Check your money.
+    aliases: [bal, b]
+   ban:
+    description: Ban a player.
+   cc:
+    description: Clear the chat.
+   ci:
+    description: Clear your inventoru.
+   cip:
+    description: Clear a the specified players inventory.
+   gamemode:
+    description: Change your gamemode.
+    aliases: [gm]
+   help:
+    description: Display the server's list of commands.
+   fly:
+    description: Toggle fly mode to true/false.
+   kick:
+    description: Kick a player.
+   tp:
+    description: Teleport to a player.
+   warn:
+    description: Warn a player.
+   warp:
+    description: Display all the private warping commands.
+   who:
+    description: List all the servers online players.
+   ip:
+    description: List the servers ip.
+   kit:
+    description: Select a kit.
+    aliases: [kits]
+   broadcast:
+    description: Broadcast a server msg.
+    aliases: [alert]
+   tphere:
+    description: Teleport a player to you!
+    aliases: [tph]
+   freeze:
+    description: Freeze a player.
+   speed:
+    description: Set your walking/flying speed.
